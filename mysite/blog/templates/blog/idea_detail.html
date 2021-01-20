@@ -1,0 +1,38 @@
+{% extends "blog/layout.html" %}
+
+{% block title %}
+<h1>Idea Detail</h1>
+<p>아이디어 세부내용 페이지 입니다. 당신이 구현하려 한 아이디어들을 자세히 살펴보세요.</p>
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ idea.name }}</h2>
+
+{% if idea.intrest %}
+<p> 1)아이디어 관심도: {{ idea.intrest }}</p> 
+{% endif %}
+
+{% if idea.devtool %}
+<p> 2)예상 개발 툴: <a href="{% url 'blog:devtool_detail' pk=idea.devtool.pk %}">{{ idea.devtool }}</a></p>
+{% endif %}
+
+{% if idea.desc %}
+<p> 3)아이디어 설명: {{ idea.desc }}</p>
+{% endif %}
+
+{% if idea.photo %}
+<img src="{{ idea.photo.url }}" style="max-width: 16%"; />
+{% endif %}
+
+<form action="{% url 'blog:idea_delete' pk=idea.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="삭제">
+</form>
+
+<button><a href="{% url "blog:idea_list" %}">목록</a></button>
+<button><a href="{% url "blog:idea_update" pk=idea.pk %}">수정</a></button>
+
+{% endblock %}
+
+

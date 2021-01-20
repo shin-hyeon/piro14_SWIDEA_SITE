@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My SW idea Management</title>
+    <style>
+        * {
+            text-decoration: none;
+            list-style-type: none;
+        }
+
+        body {
+            background: purple;
+        }
+
+        #content {
+            background: lavender;
+            width: 90%;
+            margin: 0 auto;
+        }
+        
+        #top_nav {
+            display:flex;
+            justify-content: center;
+
+        }
+        #top_nav ul a {
+            display: inline-block;
+            margin: 0 50px;
+            color: white;
+            font-size: 15pt;
+        }
+
+        .title {
+            font-weight: 800;
+            color: lightgreen;
+            text-align: center;
+        }
+
+        .detail {
+            color: white;
+            font-size: .9rem;
+            text-align: center;
+        }
+
+        #content__top {
+            padding: 10px;
+        }
+
+
+    </style>
+
+    {% block head %}
+    {% endblock %}
+
+</head>
+<body>
+    
+    <nav id='top_nav'>
+        <ul>
+            <a href="{% url 'blog:idea_list' %}">My SW Idea Manage</a>
+            <a href="{% url "blog:idea_new" %}">아이디어 등록</a>
+            <a href="{% url "blog:idea_list" %}">아이디어 관리</a>   
+            <a href="{% url "blog:devtool_new" %}">개발툴 등록</a>
+            <a href="{% url "blog:devtool_list" %}">개발툴 관리</a>
+        </ul>
+    </nav>
+    
+    <div id="content">
+
+        <div id="content__top">
+            <h2 class="title">
+                {% block title %}
+                {% endblock %}
+            </h2>
+            <p class="detail">
+                {% block detail %}
+                {% endblock %}
+            </p>
+        </div>
+    
+
+        <hr>
+
+
+        {% block content %}
+        {% endblock %}    
+
+    </div>
+
+</body>
+</html>
+

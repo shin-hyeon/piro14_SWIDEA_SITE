@@ -1,0 +1,25 @@
+{% extends "blog/layout.html" %}
+
+{% block title %}
+<h1>Idea List</h1>
+<p>나의 아이디어를 잊지 말고 기록해보세요</p>
+{% endblock %}
+
+{% block content %}
+<ul>
+    {% for idea in idea_list%}
+        {% if idea.photo %}
+        <img src="{{ idea.photo.url }}" style= "max-width: 13%"; />
+        {% endif %}
+
+        <a href="{{ idea.get_absolute_url }}">
+            {{idea.name}}
+            </a>
+        <a>예상 개발 툴</a> {{idea.devtool}}
+        <a>아이디어 관심도</a> {{idea.intrest}}
+            
+    {% endfor %}
+</ul>
+
+<hr/>
+{% endblock %}
